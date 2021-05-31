@@ -7,25 +7,36 @@
 
 import SwiftUI
 
+/// The Main App View
 struct FolderView: View {
+    /// Is nil if current folder is Root. Otherwise contains current folder
     var currentFolder: Entry?
     
+    /// UserDefaults property storing layout. true – table, false – grid
     @AppStorage("isTableLayout") private var isTableLayout = true
     
+    /// Maintains .navigationTitle
     @State private var currentFolderName = "Main Folder"
+    
+    /// Array containing all entries
     @State private var entriesToDisplay = Array<Entry>()
-    @State private var fileNames = ["File1", "File2", "File3"]
+    
+    /// Switch to false for fetching data, true – for test data
     @State private var testDataPresented = true
     
+    /// Maintatins LazyVGrid
     let columns = [
         GridItem(.flexible()),
         GridItem(.flexible()),
         GridItem(.flexible())
     ]
     
+    /// FolderView sole initializer
+    /// - Parameter currentFolder: Folder of state, nil means root folder.
     init(currentFolder: Entry?) {
         self.currentFolder = currentFolder
         
+        /// Initializes entries to use hardcoded test data
         _entriesToDisplay = State(wrappedValue: testEntries)
         
         if currentFolder != nil {
@@ -33,6 +44,7 @@ struct FolderView: View {
         }
     }
     
+    /// Filtered entries for current folder
     var correctEntries: Array<Entry> {
         var array = Array<Entry>()
         
@@ -50,16 +62,19 @@ struct FolderView: View {
         
         return array
     }
+    
     var body: some View {
         Group {
+            /// Table layout
             if isTableLayout {
                 List(correctEntries) { entry in
+                    /// Navigation Link for folders
                     if entry.itemType == "d" {
                         NavigationLink(
                             destination: FolderView(currentFolder: entry),
                             label: {
                                 HStack {
-                                    Image(systemName: entry.itemType == "d" ? "folder" : "doc.richtext")
+                                    Image(systemName: "folder")
                                         .foregroundColor(.blue)
                                         .frame(width: 20)
                                     
@@ -67,9 +82,10 @@ struct FolderView: View {
                                         .foregroundColor(.primary)
                                 }
                             })
+                        /// Plain label for files
                     } else {
                         HStack {
-                            Image(systemName: entry.itemType == "d" ? "folder" : "doc.richtext")
+                            Image(systemName: "doc.richtext")
                                 .foregroundColor(.blue)
                                 .frame(width: 20)
                             
@@ -77,16 +93,18 @@ struct FolderView: View {
                         }
                     }
                 }
+                /// Grid layout
             } else {
                 ScrollView {
                     LazyVGrid(columns: columns) {
                         ForEach(correctEntries) { entry in
+                            /// Navigation Link for folders
                             if entry.itemType == "d" {
                             NavigationLink(
                                 destination: FolderView(currentFolder: entry),
                                 label: {
                                     VStack {
-                                        Image(systemName: entry.itemType == "d" ? "folder" : "doc.richtext")
+                                        Image(systemName: "folder")
                                             .font(.system(size: 80))
                                             .frame(width: 100, height: 100)
                                         
@@ -96,9 +114,10 @@ struct FolderView: View {
                                     }
                                     .padding()
                                 })
+                                /// Plain label for files
                             } else {
                                 VStack {
-                                    Image(systemName: entry.itemType == "d" ? "folder" : "doc.richtext")
+                                    Image(systemName: "doc.richtext")
                                         .font(.system(size: 80))
                                         .frame(width: 100, height: 100)
                                         .foregroundColor(.blue)
@@ -114,7 +133,6 @@ struct FolderView: View {
                 }
             }
         }
-        .onAppear { fetchData() }
         .navigationTitle(currentFolderName)
         .toolbar {
             HStack(spacing: 30) {
@@ -159,6 +177,8 @@ struct FolderView: View {
         }
     }
     
+    // FIXME: - JSON fails to deserealize
+    /// Fails to deserealize JSON
     func fetchData() {
         let url = URL(string: "https://v1.nocodeapi.com/soloway/google_sheets/RGsuPrZrORUtxftk?tabId=PDFexpert")!
         

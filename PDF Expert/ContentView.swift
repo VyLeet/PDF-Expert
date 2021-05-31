@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// Calls FolderView inside NavigationView
 struct ContentView: View {
     
     var body: some View {

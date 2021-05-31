@@ -7,14 +7,12 @@
 
 import Foundation
 
+/// JSON response from third-party spreadsheet parser
 struct JSONResponse: Codable {
     var data: [String : Entry]
 }
 
-struct Entries: Codable {
-    var entries: [Entry]
-}
-
+/// A file tree entry – folder (itemType: d) or file (itemType: f)
 struct Entry: Codable, Identifiable {
     var id: UUID
     var parentID: UUID?
@@ -22,6 +20,7 @@ struct Entry: Codable, Identifiable {
     var itemName: String
 }
 
+// For test purposes only
 let testEntries: Array<Entry> = [
     Entry(id: UUID(uuidString: "A2AB993B-9D12-403F-A3B4-A77EEDE17521")!, parentID: UUID(uuidString:"55382859-D5F5-4A12-8AD6-308389929F56"), itemType: "f", itemName: "вступление.docx"),
     Entry(id: UUID(uuidString: "4532D46B-D57B-452C-8363-563FBACBA593")!, parentID: UUID(uuidString:"55382859-D5F5-4A12-8AD6-308389929F56"), itemType: "f", itemName: "presentation.ppt"),
