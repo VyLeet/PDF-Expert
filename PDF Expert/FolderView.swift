@@ -138,6 +138,7 @@ struct FolderView: View {
             HStack(spacing: 30) {
                 Button {
                     testDataPresented.toggle()
+                    
                     DispatchQueue.global(qos: .userInitiated).async {
                         if testDataPresented {
                             entriesToDisplay = testEntries
@@ -180,25 +181,22 @@ struct FolderView: View {
     // FIXME: - JSON fails to deserealize
     /// Fails to deserealize JSON
     func fetchData() {
-        let url = URL(string: "https://v1.nocodeapi.com/soloway/google_sheets/RGsuPrZrORUtxftk?tabId=PDFexpert")!
+        let url = URL(string: "https://sheets.googleapis.com/v4/spreadsheets/1wDg1ZvDxA7nFzUJcl8B9Q5JiyIyny_44xwiOqNhYxZw/values/PDFexpert!A2:D38?key=AIzaSyDSE21FBc2H_Z-O8kqsHPAYhmGOCypi2wg")!
         
         URLSession.shared.dataTask(with: url) { data, response, error in
             guard let data = data else {
                 print(error?.localizedDescription ?? "Unknown error")
                 return
             }
+            print("Data loaded")
+            
             let decoder = JSONDecoder()
+            print("JSONDecoder initialized")
             
             if let jsonResponse = try? decoder.decode(JSONResponse.self, from: data) {
                 DispatchQueue.main.async {
-                    let dict = jsonResponse.data
-                    var entryArray = Array<Entry>()
-                    for (_, value) in dict {
-                        entryArray.append(value)
-                    }
-                    
-                    entriesToDisplay = entryArray
-                    print("Loaded \(entryArray.count) entries")
+                    entriesToDisplay = jsonResponse.values
+                    print("Loaded \(jsonResponse.values.count) entries")
                 }
             } else {
                 print("Unable to parse JSON data")
