@@ -20,27 +20,26 @@ struct ContentView: View {
     
     /// Fetches JSON data from Google Sheet API
     func fetchData() {
-        let url = URL(string: "https://sheets.googleapis.com/v4/spreadsheets/1wDg1ZvDxA7nFzUJcl8B9Q5JiyIyny_44xwiOqNhYxZw/values/PDFexpert!A2:D38?key=AIzaSyDSE21FBc2H_Z-O8kqsHPAYhmGOCypi2wg")!
-        
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            guard let data = data else {
-                print(error?.localizedDescription ?? "Unknown error")
-                return
-            }
-            print("Data loaded")
+        DispatchQueue.global(qos: .userInitiated).async {
+            let url = URL(string: "https://sheets.googleapis.com/v4/spreadsheets/1wDg1ZvDxA7nFzUJcl8B9Q5JiyIyny_44xwiOqNhYxZw/values/PDFexpert!A2:D38?key=AIzaSyDSE21FBc2H_Z-O8kqsHPAYhmGOCypi2wg")!
             
-            let decoder = JSONDecoder()
-            print("JSONDecoder initialized")
-            
-            if let jsonResponse = try? decoder.decode(JSONResponse.self, from: data) {
-                DispatchQueue.main.async {
-                    entries = responseToEntries(response: jsonResponse.values)
-                    print("Loaded \(jsonResponse.values.count) entries")
+            URLSession.shared.dataTask(with: url) { data, response, error in
+                guard let data = data else {
+                    print(error?.localizedDescription ?? "Unknown error")
+                    return
                 }
-            } else {
-                print("Unable to parse JSON data")
-            }
-        }.resume()
+                
+                let decoder = JSONDecoder()
+                
+                if let jsonResponse = try? decoder.decode(JSONResponse.self, from: data) {
+                    DispatchQueue.main.async {
+                        entries = responseToEntries(response: jsonResponse.values)
+                    }
+                } else {
+                    print("Unable to parse JSON data")
+                }
+            }.resume()
+        }
     }
     
     /// Converts JSON decoded date into an array of Entry type
