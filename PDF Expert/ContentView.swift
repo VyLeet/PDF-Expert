@@ -18,7 +18,7 @@ struct ContentView: View {
         }
     }
     
-    /// Fetches JSON data
+    /// Fetches JSON data from Google Sheet API
     func fetchData() {
         let url = URL(string: "https://sheets.googleapis.com/v4/spreadsheets/1wDg1ZvDxA7nFzUJcl8B9Q5JiyIyny_44xwiOqNhYxZw/values/PDFexpert!A2:D38?key=AIzaSyDSE21FBc2H_Z-O8kqsHPAYhmGOCypi2wg")!
         
