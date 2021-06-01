@@ -43,6 +43,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F69DDFEE266684B400D31F19 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F6E32713266546A700FE0215 /* ContentView.swift */,
+				F6E3272426655C6400FE0215 /* FolderView.swift */,
+				F69DDFEC26667BD300D31F19 /* NewEntryView.swift */,
+				F6BEC9772666542900B5BDA0 /* GridEntryView.swift */,
+				F6BEC979266654C300B5BDA0 /* TableEntryView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		F6E32705266546A700FE0215 = {
 			isa = PBXGroup;
 			children = (
@@ -63,11 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				F6E32711266546A700FE0215 /* PDF_ExpertApp.swift */,
-				F6E32713266546A700FE0215 /* ContentView.swift */,
-				F6E3272426655C6400FE0215 /* FolderView.swift */,
-				F69DDFEC26667BD300D31F19 /* NewEntryView.swift */,
-				F6BEC9772666542900B5BDA0 /* GridEntryView.swift */,
-				F6BEC979266654C300B5BDA0 /* TableEntryView.swift */,
+				F69DDFEE266684B400D31F19 /* Views */,
 				F6E3272026654E2100FE0215 /* Entry.swift */,
 				F6E32715266546A800FE0215 /* Assets.xcassets */,
 				F6E3271A266546A800FE0215 /* Info.plist */,

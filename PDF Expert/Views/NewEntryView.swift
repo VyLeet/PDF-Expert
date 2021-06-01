@@ -13,13 +13,26 @@ struct NewEntryView: View {
     @Binding var newEntryType: EntryType?
     var currentFolder: Entry?
     
+    /// Placeholder for textfield's initial look
+    var textFieldPlaceholder: String {
+        if newEntryType == .f {
+            return "File name"
+        } else if newEntryType == .d {
+            return "Folder name"
+        } else {
+            return ""
+        }
+    }
+    
     var body: some View {
         VStack {
-            TextField(newEntryType == .f ? "File name" : "Folder name", text: $newEntryName)
+            TextField(textFieldPlaceholder, text: $newEntryName)
                 .padding(.horizontal)
                 .font(.title)
             
+            /// A stack of Add and Cancel buttons
             HStack(spacing: 30) {
+                //TODO: - Adding new values to the endpoint is not currently implemented
                 Button("Add") {
                     makeEntry()
                     withAnimation {
@@ -34,6 +47,7 @@ struct NewEntryView: View {
                 .disabled(true)
                 .foregroundColor(.secondary)
                 
+                /// Hides NewEntryView
                 Button("Cancel") {
                     withAnimation {
                         newEntryIsBeingEntered = false
