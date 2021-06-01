@@ -9,10 +9,11 @@ import SwiftUI
 
 struct TableEntryView: View {
     var name: String
+    var imageName: String
     
     var body: some View {
         HStack {
-            Image(systemName: "folder")
+            Image(systemName: imageName)
                 .foregroundColor(.blue)
                 .frame(width: 20)
             
@@ -24,6 +25,6 @@ struct TableEntryView: View {
 
 struct TableEntryView_Previews: PreviewProvider {
     static var previews: some View {
-        TableEntryView(name: "Photos")
+        TableEntryView(name: "Photos", imageName: "folder")
     }
 }

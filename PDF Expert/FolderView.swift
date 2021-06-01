@@ -63,11 +63,11 @@ struct FolderView: View {
                         NavigationLink(
                             destination: FolderView(currentFolder: entry, entries: $entries),
                             label: {
-                                TableEntryView(name: entry.itemName)
+                                TableEntryView(name: "entry.itemName", imageName: "folder")
                             })
                         /// Plain label for files
                     } else {
-                        TableEntryView(name: entry.itemName)
+                        TableEntryView(name: entry.itemName, imageName: "doc.richtext")
                     }
                 }
                 /// Grid layout
@@ -80,11 +80,11 @@ struct FolderView: View {
                                 NavigationLink(
                                     destination: FolderView(currentFolder: entry, entries: $entries),
                                     label: {
-                                        GridEntryView(name: entry.itemName)
+                                        GridEntryView(name: entry.itemName, imageName: "folder")
                                     })
                                 /// Plain label for files
                             } else {
-                                GridEntryView(name: entry.itemName)
+                                GridEntryView(name: entry.itemName, imageName: "doc.richtext")
                             }
                         }
                         

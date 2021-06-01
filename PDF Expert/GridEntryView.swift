@@ -9,9 +9,11 @@ import SwiftUI
 
 struct GridEntryView: View {
     var name: String
+    var imageName: String
+    
     var body: some View {
         VStack {
-            Image(systemName: "folder")
+            Image(systemName: imageName)
                 .font(.system(size: 80))
                 .frame(width: 100, height: 100)
                 .foregroundColor(.blue)
@@ -26,6 +28,6 @@ struct GridEntryView: View {
 
 struct GridEntryView_Previews: PreviewProvider {
     static var previews: some View {
-        GridEntryView(name: "Photos")
+        GridEntryView(name: "folder", imageName: "folder")
     }
 }
