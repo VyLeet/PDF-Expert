@@ -63,7 +63,7 @@ struct FolderView: View {
                         NavigationLink(
                             destination: FolderView(currentFolder: entry, entries: $entries),
                             label: {
-                                TableEntryView(name: "entry.itemName", imageName: "folder")
+                                TableEntryView(name: entry.itemName, imageName: "folder")
                             })
                         /// Plain label for files
                     } else {
