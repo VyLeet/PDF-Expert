@@ -1,11 +1,12 @@
 # PDF-Expert
 An iOS Engineering Internship Assignment (PDF Expert) for Readdle
 # UI
-UI is developped in SwiftUI. Some control elements do not have implementation just yet.
+UI is developped in SwiftUI.
 # Data
-Currently the app loads using hard-coded test data, while parsing data from Google Sheet JSON is not working yet.
+App fetches data from Google Sheet API on a background thread
 # Screenshots
 <p float="left">
-<img src="https://user-images.githubusercontent.com/75172737/120301056-2c2e8180-c2d5-11eb-96a0-217e1fa43d6c.PNG" width="120" height="260">
-<img src="https://user-images.githubusercontent.com/75172737/120301066-2df84500-c2d5-11eb-8275-cc141fe9cd44.PNG" width="120" height="260">
+<img src="https://user-images.githubusercontent.com/75172737/120320257-a61d3580-c2ea-11eb-9427-4b36d9e1f752.PNG" width="120" height="260">
+<img src="https://user-images.githubusercontent.com/75172737/120320270-a7e6f900-c2ea-11eb-8481-5a5470881921.PNG" width="120" height="260">
+<img src="https://user-images.githubusercontent.com/75172737/120320546-fac0b080-c2ea-11eb-8b6f-bb81a51910e7.PNG" width="120" height="260">
 </p>
