@@ -42,7 +42,7 @@ struct ContentView: View {
         }
     }
     
-    /// Converts JSON decoded date into an array of Entry type
+    /// Converts JSON decoded data into an array of Entry type
     /// - Parameter response: json decoded array of array of strings
     /// - Returns: array of Entry type
     private func responseToEntries(response: [[String]]) -> Array<Entry> {
