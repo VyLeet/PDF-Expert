@@ -16,10 +16,16 @@ struct FolderView: View {
     @AppStorage("isTableLayout") private var isTableLayout = true
     
     /// Maintains .navigationTitle
-    @State private var currentFolderName = "Main Folder"
+    var currentFolderName: String {
+        if currentFolder != nil {
+            return currentFolder!.itemName
+        } else {
+            return "Main Folder"
+        }
+    }
     
     /// Array containing all entries
-    @State private var entriesToDisplay = Array<Entry>()
+    @Binding var entries: [Entry]
     
     /// Maintatins LazyVGrid
     let columns = [
@@ -28,21 +34,11 @@ struct FolderView: View {
         GridItem(.flexible())
     ]
     
-    /// FolderView sole initializer
-    /// - Parameter currentFolder: Folder of state, nil means root folder.
-    init(currentFolder: Entry?) {
-        self.currentFolder = currentFolder
-        
-        if currentFolder != nil {
-            _currentFolderName = State(wrappedValue: currentFolder!.itemName)
-        }
-    }
-    
     /// Filtered entries for current folder
     var correctEntries: Array<Entry> {
         var array = Array<Entry>()
         
-        for entry in entriesToDisplay {
+        for entry in entries {
             if currentFolder != nil {
                 if entry.parentID == currentFolder?.id {
                     array.append(entry)
@@ -58,33 +54,20 @@ struct FolderView: View {
     }
     
     var body: some View {
-        Group {
+        VStack {
             /// Table layout
             if isTableLayout {
                 List(correctEntries) { entry in
                     /// Navigation Link for folders
                     if entry.itemType == "d" {
                         NavigationLink(
-                            destination: FolderView(currentFolder: entry),
+                            destination: FolderView(currentFolder: entry, entries: $entries),
                             label: {
-                                HStack {
-                                    Image(systemName: "folder")
-                                        .foregroundColor(.blue)
-                                        .frame(width: 20)
-                                    
-                                    Text(entry.itemName)
-                                        .foregroundColor(.primary)
-                                }
+                                TableEntryView(name: entry.itemName)
                             })
                         /// Plain label for files
                     } else {
-                        HStack {
-                            Image(systemName: "doc.richtext")
-                                .foregroundColor(.blue)
-                                .frame(width: 20)
-                            
-                            Text(entry.itemName)
-                        }
+                        TableEntryView(name: entry.itemName)
                     }
                 }
                 /// Grid layout
@@ -94,31 +77,14 @@ struct FolderView: View {
                         ForEach(correctEntries) { entry in
                             /// Navigation Link for folders
                             if entry.itemType == "d" {
-                            NavigationLink(
-                                destination: FolderView(currentFolder: entry),
-                                label: {
-                                    VStack {
-                                        Image(systemName: "folder")
-                                            .font(.system(size: 80))
-                                            .frame(width: 100, height: 100)
-                                        
-                                        Text(entry.itemName)
-                                            .foregroundColor(.primary)
-                                            .frame(height: 50)
-                                    }
-                                    .padding()
-                                })
+                                NavigationLink(
+                                    destination: FolderView(currentFolder: entry, entries: $entries),
+                                    label: {
+                                        GridEntryView(name: entry.itemName)
+                                    })
                                 /// Plain label for files
                             } else {
-                                VStack {
-                                    Image(systemName: "doc.richtext")
-                                        .font(.system(size: 80))
-                                        .frame(width: 100, height: 100)
-                                        .foregroundColor(.blue)
-                                    
-                                    Text(entry.itemName)
-                                }
-                                .padding()
+                                GridEntryView(name: entry.itemName)
                             }
                         }
                         
@@ -126,9 +92,6 @@ struct FolderView: View {
                     }
                 }
             }
-        }
-        .onAppear {
-            fetchData()
         }
         .navigationTitle(currentFolderName)
         .toolbar {
@@ -160,46 +123,10 @@ struct FolderView: View {
             .imageScale(.large)
         }
     }
-    
-    // FIXME: - JSON fails to deserealize
-    /// Fails to deserealize JSON
-    func fetchData() {
-        let url = URL(string: "https://sheets.googleapis.com/v4/spreadsheets/1wDg1ZvDxA7nFzUJcl8B9Q5JiyIyny_44xwiOqNhYxZw/values/PDFexpert!A2:D38?key=AIzaSyDSE21FBc2H_Z-O8kqsHPAYhmGOCypi2wg")!
-        
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            guard let data = data else {
-                print(error?.localizedDescription ?? "Unknown error")
-                return
-            }
-            print("Data loaded")
-            
-            let decoder = JSONDecoder()
-            print("JSONDecoder initialized")
-            
-            if let jsonResponse = try? decoder.decode(JSONResponse.self, from: data) {
-                DispatchQueue.main.async {
-                    entriesToDisplay = responseToEntries(response: jsonResponse.values)
-                    print("Loaded \(jsonResponse.values.count) entries")
-                }
-            } else {
-                print("Unable to parse JSON data")
-            }
-        }.resume()
-    }
-    
-    private func responseToEntries(response: [[String]]) -> Array<Entry> {
-        var entries = Array<Entry>()
-        
-        for element in response {
-            entries.append(Entry(id: element[0], parentID: element[1], itemType: element[2], itemName: element[3]))
-        }
-        
-        return entries
-    }
 }
 
 struct FolderView_Previews: PreviewProvider {
     static var previews: some View {
-        FolderView(currentFolder: nil)
+        FolderView(currentFolder: nil, entries: .constant([]))
     }
 }

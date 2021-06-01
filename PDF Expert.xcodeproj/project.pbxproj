@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F6BEC9782666542900B5BDA0 /* GridEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BEC9772666542900B5BDA0 /* GridEntryView.swift */; };
+		F6BEC97A266654C300B5BDA0 /* TableEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BEC979266654C300B5BDA0 /* TableEntryView.swift */; };
 		F6E32712266546A700FE0215 /* PDF_ExpertApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E32711266546A700FE0215 /* PDF_ExpertApp.swift */; };
 		F6E32714266546A700FE0215 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E32713266546A700FE0215 /* ContentView.swift */; };
 		F6E32716266546A800FE0215 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6E32715266546A800FE0215 /* Assets.xcassets */; };
@@ -16,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F6BEC9772666542900B5BDA0 /* GridEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridEntryView.swift; sourceTree = "<group>"; };
+		F6BEC979266654C300B5BDA0 /* TableEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableEntryView.swift; sourceTree = "<group>"; };
 		F6E3270E266546A700FE0215 /* PDF Expert.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PDF Expert.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6E32711266546A700FE0215 /* PDF_ExpertApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDF_ExpertApp.swift; sourceTree = "<group>"; };
 		F6E32713266546A700FE0215 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -59,6 +63,8 @@
 				F6E32711266546A700FE0215 /* PDF_ExpertApp.swift */,
 				F6E32713266546A700FE0215 /* ContentView.swift */,
 				F6E3272426655C6400FE0215 /* FolderView.swift */,
+				F6BEC9772666542900B5BDA0 /* GridEntryView.swift */,
+				F6BEC979266654C300B5BDA0 /* TableEntryView.swift */,
 				F6E3272026654E2100FE0215 /* Entry.swift */,
 				F6E32715266546A800FE0215 /* Assets.xcassets */,
 				F6E3271A266546A800FE0215 /* Info.plist */,
@@ -144,9 +150,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6BEC97A266654C300B5BDA0 /* TableEntryView.swift in Sources */,
 				F6E3272126654E2100FE0215 /* Entry.swift in Sources */,
 				F6E32714266546A700FE0215 /* ContentView.swift in Sources */,
 				F6E3272526655C6400FE0215 /* FolderView.swift in Sources */,
+				F6BEC9782666542900B5BDA0 /* GridEntryView.swift in Sources */,
 				F6E32712266546A700FE0215 /* PDF_ExpertApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
