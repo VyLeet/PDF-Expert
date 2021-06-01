@@ -21,9 +21,6 @@ struct FolderView: View {
     /// Array containing all entries
     @State private var entriesToDisplay = Array<Entry>()
     
-    /// Switch to false for fetching data, true – for test data
-    @State private var testDataPresented = true
-    
     /// Maintatins LazyVGrid
     let columns = [
         GridItem(.flexible()),
@@ -35,9 +32,6 @@ struct FolderView: View {
     /// - Parameter currentFolder: Folder of state, nil means root folder.
     init(currentFolder: Entry?) {
         self.currentFolder = currentFolder
-        
-        /// Initializes entries to use hardcoded test data
-        _entriesToDisplay = State(wrappedValue: testEntries)
         
         if currentFolder != nil {
             _currentFolderName = State(wrappedValue: currentFolder!.itemName)
@@ -133,23 +127,12 @@ struct FolderView: View {
                 }
             }
         }
+        .onAppear {
+            fetchData()
+        }
         .navigationTitle(currentFolderName)
         .toolbar {
             HStack(spacing: 30) {
-                Button {
-                    testDataPresented.toggle()
-                    
-                    DispatchQueue.global(qos: .userInitiated).async {
-                        if testDataPresented {
-                            entriesToDisplay = testEntries
-                        } else {
-                            entriesToDisplay = []
-                            fetchData()
-                        }
-                    }
-                } label: {
-                    Text(testDataPresented ? "Test data" : "Fetched data 😭")
-                }
                 Button {
                     // TODO: - NO IMPLEMENTATION YET
                 } label: {
@@ -195,13 +178,23 @@ struct FolderView: View {
             
             if let jsonResponse = try? decoder.decode(JSONResponse.self, from: data) {
                 DispatchQueue.main.async {
-                    entriesToDisplay = jsonResponse.values
+                    entriesToDisplay = responseToEntries(response: jsonResponse.values)
                     print("Loaded \(jsonResponse.values.count) entries")
                 }
             } else {
                 print("Unable to parse JSON data")
             }
         }.resume()
+    }
+    
+    private func responseToEntries(response: [[String]]) -> Array<Entry> {
+        var entries = Array<Entry>()
+        
+        for element in response {
+            entries.append(Entry(id: element[0], parentID: element[1], itemType: element[2], itemName: element[3]))
+        }
+        
+        return entries
     }
 }
 
