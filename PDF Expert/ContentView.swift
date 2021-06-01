@@ -10,6 +10,7 @@ import SwiftUI
 /// Calls FolderView inside NavigationView
 struct ContentView: View {
     @State private var entries = [Entry]()
+    @AppStorage("sheetEndRow") var sheetEndRow = "38"
     
     var body: some View {
         NavigationView {
@@ -21,7 +22,7 @@ struct ContentView: View {
     /// Fetches JSON data from Google Sheet API
     func fetchData() {
         DispatchQueue.global(qos: .userInitiated).async {
-            let url = URL(string: "https://sheets.googleapis.com/v4/spreadsheets/1wDg1ZvDxA7nFzUJcl8B9Q5JiyIyny_44xwiOqNhYxZw/values/PDFexpert!A2:D38?key=AIzaSyDSE21FBc2H_Z-O8kqsHPAYhmGOCypi2wg")!
+            let url = URL(string: "https://sheets.googleapis.com/v4/spreadsheets/1wDg1ZvDxA7nFzUJcl8B9Q5JiyIyny_44xwiOqNhYxZw/values/PDFexpert!A2:D\(sheetEndRow)?key=AIzaSyDSE21FBc2H_Z-O8kqsHPAYhmGOCypi2wg")!
             
             URLSession.shared.dataTask(with: url) { data, response, error in
                 guard let data = data else {

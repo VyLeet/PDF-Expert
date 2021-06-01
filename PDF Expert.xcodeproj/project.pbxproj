@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F69DDFED26667BD300D31F19 /* NewEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69DDFEC26667BD300D31F19 /* NewEntryView.swift */; };
 		F6BEC9782666542900B5BDA0 /* GridEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BEC9772666542900B5BDA0 /* GridEntryView.swift */; };
 		F6BEC97A266654C300B5BDA0 /* TableEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BEC979266654C300B5BDA0 /* TableEntryView.swift */; };
 		F6E32712266546A700FE0215 /* PDF_ExpertApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E32711266546A700FE0215 /* PDF_ExpertApp.swift */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F69DDFEC26667BD300D31F19 /* NewEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEntryView.swift; sourceTree = "<group>"; };
 		F6BEC9772666542900B5BDA0 /* GridEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridEntryView.swift; sourceTree = "<group>"; };
 		F6BEC979266654C300B5BDA0 /* TableEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableEntryView.swift; sourceTree = "<group>"; };
 		F6E3270E266546A700FE0215 /* PDF Expert.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PDF Expert.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -63,6 +65,7 @@
 				F6E32711266546A700FE0215 /* PDF_ExpertApp.swift */,
 				F6E32713266546A700FE0215 /* ContentView.swift */,
 				F6E3272426655C6400FE0215 /* FolderView.swift */,
+				F69DDFEC26667BD300D31F19 /* NewEntryView.swift */,
 				F6BEC9772666542900B5BDA0 /* GridEntryView.swift */,
 				F6BEC979266654C300B5BDA0 /* TableEntryView.swift */,
 				F6E3272026654E2100FE0215 /* Entry.swift */,
@@ -150,6 +153,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F69DDFED26667BD300D31F19 /* NewEntryView.swift in Sources */,
 				F6BEC97A266654C300B5BDA0 /* TableEntryView.swift in Sources */,
 				F6E3272126654E2100FE0215 /* Entry.swift in Sources */,
 				F6E32714266546A700FE0215 /* ContentView.swift in Sources */,

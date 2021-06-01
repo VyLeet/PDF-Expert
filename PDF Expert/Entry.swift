@@ -32,4 +32,11 @@ struct Entry: Codable, Identifiable {
         
         self.itemName = itemName
     }
+    
+    init(id: UUID, parentID: UUID?, itemType: String, itemName: String) {
+        self.id = id
+        self.parentID = parentID
+        self.itemType = itemType
+        self.itemName = itemName
+    }
 }

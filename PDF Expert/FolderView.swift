@@ -7,6 +7,10 @@
 
 import SwiftUI
 
+enum EntryType: String {
+    case f, d
+}
+
 /// The Main App View
 struct FolderView: View {
     /// Is nil if current folder is Root. Otherwise contains current folder
@@ -14,6 +18,11 @@ struct FolderView: View {
     
     /// UserDefaults property storing layout. true – table, false – grid
     @AppStorage("isTableLayout") private var isTableLayout = true
+    
+    /// Controls sheet presence
+    @State private var newEntryIsBeingEntered = false
+    @State private var newEntryName = ""
+    @State private var newEntryType: EntryType?
     
     /// Maintains .navigationTitle
     var currentFolderName: String {
@@ -55,6 +64,9 @@ struct FolderView: View {
     
     var body: some View {
         VStack {
+            if newEntryIsBeingEntered {
+                NewEntryView(newEntryName: $newEntryName, newEntryIsBeingEntered: $newEntryIsBeingEntered, newEntryType: $newEntryType)
+            }
             /// Table layout
             if isTableLayout {
                 List(correctEntries) { entry in
@@ -101,15 +113,40 @@ struct FolderView: View {
                 } label: {
                     Image(systemName: "person")
                 }
+                .disabled(true)
                 
                 Button {
-                    // TODO: - NO IMPLEMENTATION YET
+                    if newEntryType == .f {
+                        withAnimation {
+                            newEntryIsBeingEntered = false
+                        }
+                        newEntryType = nil
+                    } else if newEntryType == .d {
+                        newEntryType = .f
+                    } else {
+                        withAnimation {
+                            newEntryIsBeingEntered = true
+                        }
+                        newEntryType = .f
+                    }
                 } label: {
                     Image(systemName: "doc.badge.plus")
                 }
                 
                 Button {
-                    // TODO: - NO IMPLEMENTATION YET
+                    if newEntryType == .d {
+                        withAnimation {
+                            newEntryIsBeingEntered = false
+                        }
+                        newEntryType = nil
+                    } else if newEntryType == .f {
+                        newEntryType = .d
+                    } else {
+                        withAnimation {
+                            newEntryIsBeingEntered = true
+                        }
+                        newEntryType = .d
+                    }
                 } label: {
                     Image(systemName: "folder.badge.plus")
                 }
