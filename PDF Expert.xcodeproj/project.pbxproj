@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F651321F2667883D0044A07E /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F651321E2667883D0044A07E /* AddButton.swift */; };
 		F69DDFED26667BD300D31F19 /* NewEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69DDFEC26667BD300D31F19 /* NewEntryView.swift */; };
 		F6BEC9782666542900B5BDA0 /* GridEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BEC9772666542900B5BDA0 /* GridEntryView.swift */; };
 		F6BEC97A266654C300B5BDA0 /* TableEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BEC979266654C300B5BDA0 /* TableEntryView.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F651321E2667883D0044A07E /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
 		F69DDFEC26667BD300D31F19 /* NewEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEntryView.swift; sourceTree = "<group>"; };
 		F6BEC9772666542900B5BDA0 /* GridEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridEntryView.swift; sourceTree = "<group>"; };
 		F6BEC979266654C300B5BDA0 /* TableEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableEntryView.swift; sourceTree = "<group>"; };
@@ -48,6 +50,7 @@
 			children = (
 				F6E32713266546A700FE0215 /* ContentView.swift */,
 				F6E3272426655C6400FE0215 /* FolderView.swift */,
+				F651321E2667883D0044A07E /* AddButton.swift */,
 				F69DDFEC26667BD300D31F19 /* NewEntryView.swift */,
 				F6BEC9772666542900B5BDA0 /* GridEntryView.swift */,
 				F6BEC979266654C300B5BDA0 /* TableEntryView.swift */,
@@ -168,6 +171,7 @@
 				F6E3272526655C6400FE0215 /* FolderView.swift in Sources */,
 				F6BEC9782666542900B5BDA0 /* GridEntryView.swift in Sources */,
 				F6E32712266546A700FE0215 /* PDF_ExpertApp.swift in Sources */,
+				F651321F2667883D0044A07E /* AddButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

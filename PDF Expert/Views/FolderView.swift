@@ -115,41 +115,9 @@ struct FolderView: View {
                 }
                 .disabled(true)
                 
-                Button {
-                    if newEntryType == .f {
-                        withAnimation {
-                            newEntryIsBeingEntered = false
-                        }
-                        newEntryType = nil
-                    } else if newEntryType == .d {
-                        newEntryType = .f
-                    } else {
-                        withAnimation {
-                            newEntryIsBeingEntered = true
-                        }
-                        newEntryType = .f
-                    }
-                } label: {
-                    Image(systemName: "doc.badge.plus")
-                }
+                AddButton(buttonType: .f, newEntryBeingEntered: $newEntryIsBeingEntered, newEntryType: $newEntryType)
                 
-                Button {
-                    if newEntryType == .d {
-                        withAnimation {
-                            newEntryIsBeingEntered = false
-                        }
-                        newEntryType = nil
-                    } else if newEntryType == .f {
-                        newEntryType = .d
-                    } else {
-                        withAnimation {
-                            newEntryIsBeingEntered = true
-                        }
-                        newEntryType = .d
-                    }
-                } label: {
-                    Image(systemName: "folder.badge.plus")
-                }
+                AddButton(buttonType: .d, newEntryBeingEntered: $newEntryIsBeingEntered, newEntryType: $newEntryType)
                 
                 Button {
                     isTableLayout.toggle()

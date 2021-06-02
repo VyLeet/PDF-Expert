@@ -47,7 +47,7 @@ struct NewEntryView: View {
                 .disabled(true)
                 .foregroundColor(.secondary)
                 
-                /// Hides NewEntryView
+                /// Hides NewEntryViewd
                 Button("Cancel") {
                     withAnimation {
                         newEntryIsBeingEntered = false
