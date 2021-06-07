@@ -7,7 +7,7 @@
 
 import Foundation
 
-/// JSON response from third-party spreadsheet parser
+/// JSON response
 struct JSONResponse: Codable {
     var values: [[String]]
 }
